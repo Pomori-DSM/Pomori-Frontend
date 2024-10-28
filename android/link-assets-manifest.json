@@ -1,0 +1,41 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "assets/fonts/SUIT-BOLD.OTF",
+      "sha1": "39f201d0359ddfd30dd02eb188083cade906190f"
+    },
+    {
+      "path": "assets/fonts/SUIT-EXTRABOLD.OTF",
+      "sha1": "316b1281f972b3bf6f32d7ad8bbafa54f1c81e58"
+    },
+    {
+      "path": "assets/fonts/SUIT-EXTRALIGHT.OTF",
+      "sha1": "3cd52b6004e39e826b37380ebd897228d6f3881f"
+    },
+    {
+      "path": "assets/fonts/SUIT-HEAVY.OTF",
+      "sha1": "54f25b52819b404a60beac10e4b1564ebba20688"
+    },
+    {
+      "path": "assets/fonts/SUIT-LIGHT.OTF",
+      "sha1": "01e42c9166fddaff7630ea4023afe86ae380ef11"
+    },
+    {
+      "path": "assets/fonts/SUIT-MEDIUM.OTF",
+      "sha1": "3f4c10fe9129e1006500041c6f8562e7132c3409"
+    },
+    {
+      "path": "assets/fonts/SUIT-REGULAR.OTF",
+      "sha1": "9fae25a0a5c0797eadf7a37150ac215bce4b65df"
+    },
+    {
+      "path": "assets/fonts/SUIT-SEMIBOLD.OTF",
+      "sha1": "fa455d860e23b3ac2ec682538ff2ec9ad7a60e65"
+    },
+    {
+      "path": "assets/fonts/SUIT-THIN.OTF",
+      "sha1": "8cb4f22e6e6312fe1dfa90c5cb47585d6c820cfe"
+    }
+  ]
+}
