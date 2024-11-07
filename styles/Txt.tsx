@@ -39,80 +39,91 @@ export const Txt = ({
 };
 
 const fonts: { [key: string]: TextStyle } = {
-  "": {},
+  "": { fontFamily: "Regular" },
+  extralight88: {
+    fontSize: 88,
+    lineHeight: 110,
+    fontFamily: "ExtraLight",
+  },
   semibold40: {
     fontSize: 40,
     lineHeight: 52,
-    fontWeight: 600,
+    fontFamily: "SemiBold",
   },
   semibold36: {
     fontSize: 36,
     lineHeight: 48,
-    fontWeight: 600,
+    fontFamily: "SemiBold",
   },
   semibold32: {
     fontSize: 32,
     lineHeight: 44,
-    fontWeight: 600,
+    fontFamily: "SemiBold",
   },
+
   semibold24: {
     fontSize: 24,
     lineHeight: 36,
-    fontWeight: 600,
+    fontFamily: "SemiBold",
   },
   medium24: {
     fontSize: 24,
     lineHeight: 36,
-    fontWeight: 500,
+    fontFamily: "Medium",
+  },
+  heavy20: {
+    fontSize: 20,
+    lineHeight: 24,
+    fontFamily: "Heavy",
   },
   semibold20: {
     fontSize: 20,
     lineHeight: 24,
-    fontWeight: 600,
+    fontFamily: "SemiBold",
   },
   medium20: {
     fontSize: 20,
     lineHeight: 24,
-    fontWeight: 500,
+    fontFamily: "Medium",
   },
   semibold18: {
     fontSize: 18,
     lineHeight: 22,
-    fontWeight: 600,
+    fontFamily: "SemiBold",
   },
   medium18: {
     fontSize: 18,
     lineHeight: 22,
-    fontWeight: 500,
+    fontFamily: "Medium",
   },
   semibold16: {
     fontSize: 16,
     lineHeight: 20,
-    fontWeight: 600,
+    fontFamily: "SemiBold",
   },
   medium16: {
     fontSize: 16,
     lineHeight: 20,
-    fontWeight: 500,
+    fontFamily: "Medium",
   },
   semibold14: {
     fontSize: 14,
     lineHeight: 18,
-    fontWeight: 600,
+    fontFamily: "SemiBold",
   },
   medium14: {
     fontSize: 14,
     lineHeight: 18,
-    fontWeight: 500,
+    fontFamily: "Medium",
   },
   semibold12: {
     fontSize: 12,
     lineHeight: 14,
-    fontWeight: 600,
+    fontFamily: "SemiBold",
   },
   medium12: {
     fontSize: 12,
     lineHeight: 14,
-    fontWeight: 500,
+    fontFamily: "Medium",
   },
 };

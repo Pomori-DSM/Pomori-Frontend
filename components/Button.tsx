@@ -30,7 +30,7 @@ export const Button = ({
       onPress={onPress}
       style={[otherStyles, styles.box, { borderRadius: keyboardOpen ? 0 : 8 }]}
     >
-      <Txt textStyle="medium18" style={{ color: textColor }}>
+      <Txt textStyle="medium16" style={{ color: textColor }}>
         {text}
       </Txt>
     </TouchableOpacity>
@@ -40,7 +40,7 @@ export const Button = ({
 const styles = StyleSheet.create({
   box: {
     width: "100%",
-    height: 56,
+    height: 54,
     justifyContent: "center",
     alignItems: "center",
   },

@@ -34,5 +34,6 @@ const styles = StyleSheet.create({
     left: 0,
     justifyContent: "space-between",
     backgroundColor: color.white,
+    flexDirection:"row"
   },
 });
