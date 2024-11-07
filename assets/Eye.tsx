@@ -20,14 +20,14 @@ export const Eye = ({ size = 24, onPress, color }: PropsType) => {
         stroke={color}
         strokeLinecap="round"
         strokeLinejoin="round"
-        strokeWidth="2"
+        strokeWidth={2}
         d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8Z"
       />
       <Path
         stroke={color}
         strokeLinecap="round"
         strokeLinejoin="round"
-        strokeWidth="2"
+        strokeWidth={2}
         d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"
       />
     </Svg>

@@ -36,7 +36,7 @@ export const Arrow = ({
         stroke={color}
         strokeLinecap="round"
         strokeLinejoin="round"
-        strokeWidth="2"
+        strokeWidth={2}
         d="M19 12H5m0 0 6 6m-6-6 6-6"
       />
     </Svg>
