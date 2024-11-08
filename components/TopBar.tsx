@@ -27,13 +27,13 @@ const styles = StyleSheet.create({
   container: {
     width: Dimensions.get("window").width,
     paddingHorizontal: 24,
-    paddingVertical: 16,
-    height: 56,
+    paddingBottom: 16,
+    paddingTop: 40,
     position: "absolute",
     top: 0,
     left: 0,
     justifyContent: "space-between",
     backgroundColor: color.white,
-    flexDirection:"row"
+    flexDirection: "row",
   },
 });
