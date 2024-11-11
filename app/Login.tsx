@@ -6,6 +6,7 @@ import { Arrow } from "@/assets/Arrow_Long";
 import { Controller, useForm } from "react-hook-form";
 import { useNavigation } from "expo-router";
 import { NativeStackNavigationProp } from "react-native-screens/lib/typescript/native-stack/types";
+import { login } from "./apis/user";
 
 export default function Login() {
   const {
@@ -14,11 +15,13 @@ export default function Login() {
     handleSubmit,
   } = useForm({ defaultValues: { id: "", password: "" } });
 
-  const navigation = useNavigation<NativeStackNavigationProp<any>>()
+  const navigation = useNavigation<NativeStackNavigationProp<any>>();
 
   const [keyboardOpen, setKeyboardOpen] = useState(false);
 
-  const loginHandler = handleSubmit((data) => {});
+  const loginHandler = handleSubmit((data) => {
+    login(data, navigation);
+  });
 
   useEffect(() => {
     const keyboardDidShowListener = Keyboard.addListener(
@@ -38,7 +41,14 @@ export default function Login() {
 
   return (
     <View style={styles.container}>
-      <TopBar leftIcon={<Arrow onPress={() => navigation.navigate("Onboarding")} color={color.black} />} />
+      <TopBar
+        leftIcon={
+          <Arrow
+            onPress={() => navigation.navigate("Onboarding")}
+            color={color.black}
+          />
+        }
+      />
       <View style={styles.loginBox}>
         <View style={styles.titleBox}>
           <Txt textStyle="semibold36">로그인</Txt>
@@ -95,7 +105,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: color.white,
     position: "relative",
-    paddingTop: 56,
+    paddingTop: 80,
   },
   loginBox: {
     padding: 20,
