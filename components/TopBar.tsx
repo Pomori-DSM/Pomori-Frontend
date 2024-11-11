@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     width: Dimensions.get("window").width,
     paddingHorizontal: 24,
     paddingBottom: 16,
-    paddingTop: 40,
+    paddingTop: 48,
     position: "absolute",
     top: 0,
     left: 0,
