@@ -13,6 +13,20 @@ export const User = ({ size = 24, color, isFill }: PropsType) => {
       {isFill ? (
         <Svg width={size} height={size} fill="none" viewBox="0 0 32 32">
           <Path
+            fill={color}
+            d="M9.333 10.667a6.667 6.667 0 1 0 13.334 0 6.667 6.667 0 0 0-13.334 0ZM26.667 28c0-3.682-4.776-6.667-10.667-6.667S5.333 24.318 5.333 28h21.334Z"
+          />
+          <Path
+            stroke={color}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M9.333 10.667a6.667 6.667 0 1 0 13.334 0 6.667 6.667 0 0 0-13.334 0ZM26.667 28c0-3.682-4.776-6.667-10.667-6.667S5.333 24.318 5.333 28h21.334Z"
+          />
+        </Svg>
+      ) : (
+        <Svg width={size} height={size} fill="none" viewBox="0 0 32 32">
+          <Path
             stroke={color}
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -20,8 +34,6 @@ export const User = ({ size = 24, color, isFill }: PropsType) => {
             d="M26.667 28c0-3.682-4.776-6.667-10.667-6.667S5.333 24.318 5.333 28M16 17.333A6.667 6.667 0 1 1 16 4a6.667 6.667 0 0 1 0 13.333Z"
           />
         </Svg>
-      ) : (
-        <></>
       )}
     </>
   );

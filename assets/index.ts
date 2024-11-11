@@ -7,3 +7,8 @@ export * from "./Bell";
 export * from "./Play";
 export * from "./Volume_Max";
 export * from "./Redo";
+export * from "./House";
+export * from "./Notebook";
+export * from "./Timer";
+export * from "./Calendar";
+export * from "./User";
