@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Dimensions, ScrollView, StyleSheet, View } from "react-native";
 import { Button } from "@/components";
 import { useNavigation } from "expo-router";
-import { NativeStackNavigationProp } from "react-native-screens/lib/typescript/native-stack/types";
+import { NavigationProp } from "@react-navigation/native";
 
 export default function Onboarding() {
   const [imageNumber, setImageNumber] = useState<number>(0);
@@ -12,7 +12,7 @@ export default function Onboarding() {
     <View style={styles.image} />,
     <View style={styles.image} />,
   ];
-  const navigation = useNavigation<NativeStackNavigationProp<any>>();
+  const navigation = useNavigation<NavigationProp<any>>();
 
   return (
     <View style={styles.container}>

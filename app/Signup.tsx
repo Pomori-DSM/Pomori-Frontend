@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import { StyleSheet, View, Dimensions, Keyboard } from "react-native";
 import { color, Txt } from "@/styles";
 import { Button, Input, TopBar } from "@/components";
-import { Arrow } from "@/assets/Arrow_Long";
+import { Arrow_Long } from "@/assets";
 import { Controller, useForm, useWatch } from "react-hook-form";
 import { useNavigation } from "expo-router";
-import { NativeStackNavigationProp } from "react-native-screens/lib/typescript/native-stack/types";
 import { signup } from "./apis/user";
+import { NavigationProp } from "@react-navigation/native";
 
 export default function Signup() {
   const {
@@ -15,7 +15,7 @@ export default function Signup() {
     handleSubmit,
   } = useForm({ defaultValues: { id: "", password: "", passwordCheck: "" } });
 
-  const navigation = useNavigation<NativeStackNavigationProp<any>>();
+  const navigation = useNavigation<NavigationProp<any>>();
   const password = useWatch({ control, name: "password" });
 
   const [keyboardOpen, setKeyboardOpen] = useState(false);
@@ -44,7 +44,7 @@ export default function Signup() {
     <View style={styles.container}>
       <TopBar
         leftIcon={
-          <Arrow
+          <Arrow_Long
             onPress={() => navigation.navigate("Onboarding")}
             color={color.black}
           />
@@ -91,7 +91,11 @@ export default function Signup() {
           <Controller
             name="passwordCheck"
             control={control}
-            rules={{ required: "비밀번호를 입력해주세요." }}
+            rules={{
+              required: "비밀번호를 입력해주세요.",
+              validate: (value) =>
+                value === password || "비밀번호가 일치하지 않습니다.",
+            }}
             render={({ field: { onChange, value } }) => (
               <Input
                 onChangeText={onChange}

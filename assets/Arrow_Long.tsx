@@ -15,7 +15,7 @@ const rotationAngles: { [key: string]: string } = {
   left: "0deg",
 };
 
-export const Arrow = ({
+export const Arrow_Long = ({
   size = 24,
   onPress,
   color,
