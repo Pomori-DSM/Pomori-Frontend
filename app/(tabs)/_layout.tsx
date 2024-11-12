@@ -53,7 +53,7 @@ export default function Tab() {
         }}
       />
       <Tabs.Screen
-        name="User"
+        name="Profile"
         options={{
           title: "",
           tabBarIcon: ({ color }) => (
