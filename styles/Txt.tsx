@@ -41,9 +41,10 @@ export const Txt = ({
 const fonts: { [key: string]: TextStyle } = {
   "": { fontFamily: "Regular" },
   extralight88: {
-    fontSize: 88,
-    lineHeight: 110,
+    fontSize: 80,
+    lineHeight: 100,
     fontFamily: "ExtraLight",
+    height: 100,
   },
   semibold40: {
     fontSize: 40,
