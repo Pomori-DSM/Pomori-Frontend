@@ -1,7 +1,7 @@
 import { View, TouchableOpacity, StyleSheet } from "react-native";
 import React, { useEffect, useState } from "react";
 import { TopBar } from "@/components";
-import { Bell, Play, Redo, Volume_Max } from "@/assets";
+import { Arrow_Long, Bell, Play, Redo, Volume_Max } from "@/assets";
 import { Txt, color } from "@/styles";
 import { Pause } from "@/assets/Pause";
 import SetTimeModal from "../SetTimeModal";
@@ -14,6 +14,7 @@ export default function Timer() {
 
   const [isPlay, setIsPlay] = useState<boolean>(false);
   const [time, setTime] = useState<number>(initTime);
+  const [continueTime, setContinueTime] = useState<number>(0);
   const [visibleModal, setVisibleModal] = useState<boolean>(false);
 
   const hour = Math.floor(time / 3600)
@@ -28,8 +29,12 @@ export default function Timer() {
     .toString()
     .padStart(2, "0");
 
-  const timerReset = () => {
+  const resetTimer = () => {
     setTime(initTime);
+  };
+
+  const continueTimer = () => {
+    setTime(continueTime);
   };
 
   useEffect(() => {
@@ -56,49 +61,84 @@ export default function Timer() {
 
   return (
     <View style={styles.container}>
-      <TopBar
-        leftIcon={<Txt textStyle="heavy20">POMORI</Txt>}
-        rightIcon={
-          <TouchableOpacity onPress={() => navigation.navigate("Notice")}>
-            <Bell color={color.black} />
-          </TouchableOpacity>
-        }
-      />
       {visibleModal ? (
-        <SetTimeModal setTime={setTime} setVisibleModal={setVisibleModal} />
+        <>
+          <TopBar
+            leftIcon={
+              <Arrow_Long
+                onPress={() => setVisibleModal(false)}
+                color={color.black}
+              />
+            }
+          />
+          <SetTimeModal
+            setTime={setTime}
+            setVisibleModal={setVisibleModal}
+            setContinueTime={setContinueTime}
+          />
+        </>
       ) : (
         <>
+          <TopBar
+            leftIcon={<Txt textStyle="heavy20">POMORI</Txt>}
+            rightIcon={
+              <TouchableOpacity onPress={() => navigation.navigate("Notice")}>
+                <Bell color={color.black} />
+              </TouchableOpacity>
+            }
+          />
           <View style={styles.timerBox}>
             <TouchableOpacity
               onPress={() => {
                 if (!isPlay) setVisibleModal(true);
               }}
             >
-              <Txt textStyle="extralight88">{`${hour}:${min}:${sec}`}</Txt>
+              <View style={styles.timer}>
+                <View style={styles.timeBox}>
+                  <Txt textStyle="extralight88">{hour}</Txt>
+                </View>
+                <Txt textStyle="extralight88">:</Txt>
+
+                <View style={styles.timeBox}>
+                  <Txt textStyle="extralight88">{min}</Txt>
+                </View>
+                <Txt textStyle="extralight88">:</Txt>
+
+                <View style={styles.timeBox}>
+                  <Txt textStyle="extralight88">{sec}</Txt>
+                </View>
+              </View>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.continueButton}>
-              <Play fill={color.gray600} color={color.gray600} size={16} />
-              <Txt color="gray600" textStyle="semibold16">
-                이어서 하기
-              </Txt>
-            </TouchableOpacity>
+            {time == 0 && (
+              <TouchableOpacity
+                onPress={continueTimer}
+                style={styles.continueButton}
+              >
+                <Play fill={color.gray600} color={color.gray600} size={16} />
+                <Txt color="gray600" textStyle="semibold16">
+                  다시 시작
+                </Txt>
+              </TouchableOpacity>
+            )}
           </View>
           <View style={styles.timeControlBox}>
             <TouchableOpacity style={styles.subControlButton}>
               <Volume_Max color={color.gray500} />
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={() => setIsPlay((prev) => !prev)}
+              onPress={() => {
+                if (time !== 0) setIsPlay((prev) => !prev);
+              }}
               style={isPlay ? styles.pauseButton : styles.playButton}
             >
-              {isPlay ? (
+              {isPlay && time !== 0 ? (
                 <Pause color={color.white} />
               ) : (
                 <Play color={color.black} />
               )}
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={timerReset}
+              onPress={resetTimer}
               style={styles.subControlButton}
             >
               <Redo color={color.gray500} />
@@ -171,5 +211,16 @@ const styles = StyleSheet.create({
     flex: 1,
     borderRadius: 100,
     width: 220,
+  },
+  timer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  timeBox: {
+    width: 110,
+    height: 100,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });

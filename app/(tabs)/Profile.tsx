@@ -10,7 +10,13 @@ export default function Profile() {
   const navigation = useNavigation<NavigationProp<any>>();
   return (
     <View style={styles.container}>
-      <TopBar rightIcon={<Setting color={color.black} />} />
+      <TopBar
+        rightIcon={
+          <TouchableOpacity onPress={() => navigation.navigate("Set")}>
+            <Setting color={color.black} />
+          </TouchableOpacity>
+        }
+      />
       <View style={styles.userInfoBox}>
         <View style={styles.userProfile} />
         <View style={styles.profileText}>
@@ -58,7 +64,7 @@ const styles = StyleSheet.create({
   },
   profileText: {
     alignItems: "center",
-    gap: 24,
+    gap: 12,
   },
   loginButton: {
     borderRadius: 100,
