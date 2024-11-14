@@ -20,6 +20,7 @@ export default function Main() {
         pagingEnabled
         snapToInterval={Dimensions.get("window").width - 40 + 8}
         contentContainerStyle={styles.phraseContainer}
+        scrollEventThrottle={1}
       >
         {phraseArr.map(({ text, author }, index) => (
           <PhraseBox key={index} phrase={text} author={author} />
@@ -27,12 +28,12 @@ export default function Main() {
       </ScrollView>
       <View style={styles.focusTimeBox}>
         <View style={styles.focusTimeTitle}>
-          <Txt textStyle="medium24">집중한 시간</Txt>
+          <Txt textStyle="semibold18">집중한 시간</Txt>
           <Txt textStyle="medium16">9월 12일 목요일</Txt>
         </View>
+        <GoalFocusTime time={50} totalTime={100} />
         <GoalFocusTime />
-        <GoalFocusTime />
-        <GoalFocusTime />
+        <GoalFocusTime time={100} totalTime={100} />
       </View>
     </ScrollView>
   );
