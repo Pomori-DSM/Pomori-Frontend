@@ -1,4 +1,4 @@
-import { GoalFocusTime, PhraseBox } from "@/components";
+import { FocusTime, GoalFocusTime, MainCard, PhraseBox } from "@/components";
 import { Txt, color } from "@/styles";
 import React from "react";
 import {
@@ -7,58 +7,85 @@ import {
   StyleSheet,
   ScrollView,
   Dimensions,
+  Animated,
+  Image,
 } from "react-native";
 import { useRandomPhrase } from "@/hooks";
+import { Arrow } from "@/assets";
+import { useNavigation } from "expo-router";
+import { NavigationProp } from "@react-navigation/native";
 
 export default function Main() {
-  const phraseArr = useRandomPhrase();
+  const navigation = useNavigation<NavigationProp<any>>();
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        pagingEnabled
-        snapToInterval={Dimensions.get("window").width - 40 + 8}
-        contentContainerStyle={styles.phraseContainer}
-        scrollEventThrottle={1}
-      >
-        {phraseArr.map(({ text, author }, index) => (
-          <PhraseBox key={index} phrase={text} author={author} />
-        ))}
-      </ScrollView>
+      <View style={styles.titleBox}>
+        <Txt textStyle="semibold24">
+          반가워요! 어진님{"\n"}오늘도 집중해봐요
+        </Txt>
+      </View>
       <View style={styles.focusTimeBox}>
         <View style={styles.focusTimeTitle}>
-          <Txt textStyle="semibold18">집중한 시간</Txt>
-          <Txt textStyle="medium16">9월 12일 목요일</Txt>
+          <Txt textStyle="semibold24">내 집중력 확인</Txt>
+          <Txt textStyle="medium14">9월 12일 목요일</Txt>
         </View>
-        <GoalFocusTime time={50} totalTime={100} />
-        <GoalFocusTime />
-        <GoalFocusTime time={100} totalTime={100} />
+        <FocusTime />
+        <View style={styles.goalBox}>
+          <MainCard
+            onPress={() => navigation.navigate("Calendar")}
+            title="내 계획"
+            details="오늘 할 일 5개"
+            image={require("../../assets/images/calender.png")}
+          />
+          <MainCard
+            title="내 목표"
+            onPress={() => navigation.navigate("Goal")}
+            details="오늘 할 일 5개"
+            image={require("../../assets/images/location.png")}
+          />
+        </View>
       </View>
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    paddingHorizontal: 20,
-    paddingTop: 108,
-    gap: 48,
+  titleBox: {
     backgroundColor: color.white,
+    paddingHorizontal: 20,
+    paddingVertical: 24,
+
+    borderBottomLeftRadius: 24,
+    borderBottomRightRadius: 24,
+    borderEndEndRadius: 24,
   },
-  phraseContainer: {
+  goalBox: {
+    flexDirection: "row",
+    gap: 12,
+  },
+  container: {
+    paddingTop: 80,
+    gap: 48,
+    // backgroundColor: color.white,
+  },
+  countTimeBox: {
+    backgroundColor: color.white,
+    padding: 20,
+    borderRadius: 16,
     gap: 8,
   },
+
   focusTimeBox: {
+    paddingHorizontal: 20,
     width: "100%",
-    gap: 16,
-    backgroundColor: color.white,
+    gap: 12,
+    // backgroundColor: color.white,
     borderRadius: 16,
   },
   focusTimeTitle: {
     width: "100%",
     justifyContent: "space-between",
-    flexDirection: "row",
     alignItems: "flex-end",
+    flexDirection: "row",
   },
 });
