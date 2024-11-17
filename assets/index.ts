@@ -12,3 +12,6 @@ export * from "./Notebook";
 export * from "./Timer";
 export * from "./Calendar";
 export * from "./User";
+export * from "./Setting";
+export * from "./Arrow";
+export * from "./Double_Quotes";
