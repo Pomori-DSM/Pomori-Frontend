@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Txt, color } from "@/styles";
 import { TopBar } from "@/components";
-import { Arrow } from "@/assets";
+import { Arrow_Long } from "@/assets";
 import { useNavigation } from "expo-router";
 import { NavigationProp } from "@react-navigation/native";
 
@@ -12,7 +12,7 @@ export default function Notice() {
     <View style={styles.container}>
       <TopBar
         leftIcon={
-          <Arrow onPress={() => navigation.goBack()} color={color.black} />
+          <Arrow_Long onPress={() => navigation.goBack()} color={color.black} />
         }
         text="알림"
       />

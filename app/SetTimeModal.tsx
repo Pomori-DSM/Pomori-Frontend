@@ -8,16 +8,20 @@ import {
   NativeScrollEvent,
   TouchableOpacity,
   Dimensions,
+  FlatList,
 } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
 
 interface ISetTimeModal {
   setVisibleModal: any;
   setTime: any;
+  setContinueTime: any;
 }
 
 export default function SetTimeModal({
   setVisibleModal,
   setTime,
+  setContinueTime,
 }: ISetTimeModal) {
   const [hourIndex, setHourIndex] = useState(0);
   const [minuteIndex, setMinuteIndex] = useState(0);
@@ -27,7 +31,7 @@ export default function SetTimeModal({
     console.log(`${hourIndex}:${minuteIndex}:${secondIndex}`);
   }, [hourIndex, minuteIndex, secondIndex]);
 
-  const hourArr = Array(24)
+  const hourArr = Array(60)
     .fill(null)
     .map((v, i) => i);
   const minSecArr = Array(60)
@@ -40,7 +44,7 @@ export default function SetTimeModal({
     second: useRef<ScrollView>(null),
   };
 
-  const snapToInterval = 110;
+  const snapToInterval = 100;
 
   const handleScroll = (
     event: NativeSyntheticEvent<NativeScrollEvent>,
@@ -69,15 +73,17 @@ export default function SetTimeModal({
   const setTimeHandle = () => {
     setVisibleModal(false);
     let time =
-      ((hourIndex + 1) % 24) * 3600 +
+      ((hourIndex + 1) % 60) * 3600 +
       ((minuteIndex + 1) % 60) * 60 +
       ((secondIndex + 1) % 60);
     setTime(time);
+    setContinueTime(time);
   };
 
   return (
     <View style={styles.container}>
       <View style={styles.setTimeBox}>
+        {/* <FlatList keyExtractor={(i) => ``} data={} renderItem={} /> */}
         <ScrollView
           ref={scrollRefs.hour}
           showsVerticalScrollIndicator={false}
@@ -88,6 +94,7 @@ export default function SetTimeModal({
             handleScroll(event, setHourIndex, hourArr.length, scrollRefs.hour)
           }
           scrollEventThrottle={16}
+          style={styles.scrollView}
         >
           {Array(3)
             .fill(hourArr)
@@ -104,9 +111,7 @@ export default function SetTimeModal({
               </Txt>
             ))}
         </ScrollView>
-        <Txt textStyle="extralight88" style={{ paddingBottom: 16 }}>
-          :
-        </Txt>
+        <Txt textStyle="extralight88">:</Txt>
         <ScrollView
           ref={scrollRefs.minute}
           showsVerticalScrollIndicator={false}
@@ -136,9 +141,7 @@ export default function SetTimeModal({
               </Txt>
             ))}
         </ScrollView>
-        <Txt textStyle="extralight88" style={{ paddingBottom: 16 }}>
-          :
-        </Txt>
+        <Txt textStyle="extralight88">:</Txt>
         <ScrollView
           ref={scrollRefs.second}
           showsVerticalScrollIndicator={false}
@@ -168,11 +171,17 @@ export default function SetTimeModal({
               </Txt>
             ))}
         </ScrollView>
-        <View style={styles.translucentWrap1} />
-        <View style={styles.translucentWrap2} />
+        <LinearGradient
+          colors={["white", "transparent"]}
+          style={styles.translucentWrap1}
+        />
+        <LinearGradient
+          colors={["transparent", "white"]}
+          style={styles.translucentWrap2}
+        />
       </View>
       <TouchableOpacity onPress={setTimeHandle} style={styles.pauseButton}>
-        <Txt textStyle="medium20" color="white">
+        <Txt textStyle="medium18" color="white">
           완료
         </Txt>
       </TouchableOpacity>
@@ -192,7 +201,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "row",
-    height: 350,
+    height: 300,
     position: "relative",
   },
   pauseButton: {
@@ -207,19 +216,20 @@ const styles = StyleSheet.create({
     width: 220,
   },
   translucentWrap1: {
-    backgroundColor: "rgba(255,255,255,0.6)",
     position: "absolute",
     top: 0,
+    backgroundColor: "rgba(255, 255, 255, 0.6)",
     width: Dimensions.get("window").width,
-    height: 110,
+    height: 100,
     zIndex: 100,
   },
   translucentWrap2: {
-    backgroundColor: "rgba(255,255,255,0.6)",
     position: "absolute",
-    top: 240,
+    top: 200,
+    backgroundColor: "rgba(255, 255, 255, 0.6)",
     width: Dimensions.get("window").width,
-    height: 110,
+    height: 100,
     zIndex: 100,
   },
+  scrollView: {},
 });

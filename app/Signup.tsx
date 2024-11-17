@@ -44,10 +44,7 @@ export default function Signup() {
     <View style={styles.container}>
       <TopBar
         leftIcon={
-          <Arrow_Long
-            onPress={() => navigation.navigate("Onboarding")}
-            color={color.black}
-          />
+          <Arrow_Long onPress={() => navigation.goBack()} color={color.black} />
         }
       />
       <View style={styles.loginBox}>

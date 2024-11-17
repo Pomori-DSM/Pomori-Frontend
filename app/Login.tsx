@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, View, Dimensions, Keyboard } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Dimensions,
+  Keyboard,
+  TouchableOpacity,
+} from "react-native";
 import { color, Txt } from "@/styles";
 import { Button, Input, TopBar } from "@/components";
-import { Arrow } from "@/assets/Arrow_Long";
+import { Arrow_Long } from "@/assets";
 import { Controller, useForm } from "react-hook-form";
 import { useNavigation } from "expo-router";
-import { NativeStackNavigationProp } from "react-native-screens/lib/typescript/native-stack/types";
 import { login } from "./apis/user";
+import { NavigationProp } from "@react-navigation/native";
 
 export default function Login() {
   const {
@@ -15,7 +21,7 @@ export default function Login() {
     handleSubmit,
   } = useForm({ defaultValues: { id: "", password: "" } });
 
-  const navigation = useNavigation<NativeStackNavigationProp<any>>();
+  const navigation = useNavigation<NavigationProp<any>>();
 
   const [keyboardOpen, setKeyboardOpen] = useState(false);
 
@@ -43,10 +49,7 @@ export default function Login() {
     <View style={styles.container}>
       <TopBar
         leftIcon={
-          <Arrow
-            onPress={() => navigation.navigate("Onboarding")}
-            color={color.black}
-          />
+          <Arrow_Long onPress={() => navigation.goBack()} color={color.black} />
         }
       />
       <View style={styles.loginBox}>
@@ -87,6 +90,15 @@ export default function Login() {
               />
             )}
           />
+          <TouchableOpacity
+            onPress={() => navigation.navigate("Signup")}
+            style={styles.moveSignupTextBox}
+          >
+            <Txt textStyle="medium16" color="gray500">
+              계정이 없으신가요?
+            </Txt>
+            <Txt textStyle="semibold16">회원가입</Txt>
+          </TouchableOpacity>
         </View>
       </View>
       <View style={[styles.buttonBox, { padding: keyboardOpen ? 0 : 20 }]}>
@@ -121,5 +133,10 @@ const styles = StyleSheet.create({
   },
   buttonBox: {
     width: Dimensions.get("window").width,
+  },
+  moveSignupTextBox: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
   },
 });
