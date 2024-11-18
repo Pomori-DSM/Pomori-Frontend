@@ -16,7 +16,7 @@ export const EyeOff = ({ size = 24, color, onPress }: PropsType) => {
       fill="none"
       viewBox="0 0 24 24"
     >
-      <G clip-path="url(#a)">
+      <G clipPath="url(#a)">
         <Path
           stroke={color}
           strokeLinecap="round"

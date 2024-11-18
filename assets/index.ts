@@ -15,3 +15,5 @@ export * from "./User";
 export * from "./Setting";
 export * from "./Arrow";
 export * from "./Double_Quotes";
+export * from "./Plus";
+export * from "./Check";
