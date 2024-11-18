@@ -1,6 +1,7 @@
 import { Arrow_Long } from "@/assets";
 import { SetList, TopBar } from "@/components";
 import { Txt, color } from "@/styles";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { NavigationProp } from "@react-navigation/native";
 import { useNavigation } from "expo-router";
 import React from "react";
@@ -23,6 +24,13 @@ export default function Set() {
       <SetList text="알림 관리" />
       <SetList text="버전 정보" />
       <SetList text="문의" />
+      <SetList
+        onPress={() => {
+          AsyncStorage.removeItem("accessToken");
+          navigation.navigate("Login");
+        }}
+        text="로그아웃"
+      />
       <Txt style={styles.appVersion} textStyle="medium14" color="gray400">
         ⓒ Pomori
       </Txt>
