@@ -1,13 +1,33 @@
 import { Setting, User } from "@/assets";
 import { TopBar } from "@/components";
 import { color, Txt } from "@/styles";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { NavigationProp } from "@react-navigation/native";
 import { useNavigation } from "expo-router";
-import React from "react";
-import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
+import React, { useEffect, useState } from "react";
+import { View, TouchableOpacity, StyleSheet } from "react-native";
 
 export default function Profile() {
   const navigation = useNavigation<NavigationProp<any>>();
+  const [userName, setUserName] = useState<string | null>(null);
+
+  // AsyncStorage에서 사용자 정보를 불러옴
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      const accessToken = await AsyncStorage.getItem("accessToken");
+      const userInfo = await AsyncStorage.getItem("userInfo");
+
+      if (accessToken && userInfo) {
+        const parsedUserInfo = JSON.parse(userInfo);
+        setUserName(parsedUserInfo.username);
+      } else {
+        setUserName(null); // 로그인되지 않은 상태
+      }
+    };
+
+    fetchUserInfo();
+  }, []);
+
   return (
     <View style={styles.container}>
       <TopBar
@@ -20,9 +40,11 @@ export default function Profile() {
       <View style={styles.userInfoBox}>
         <View style={styles.userProfile} />
         <View style={styles.profileText}>
-          {false ? (
-            <Txt textStyle="semibold24">사용자 이름</Txt>
+          {userName ? (
+            // 로그인 상태: 사용자 이름 표시
+            <Txt textStyle="semibold24">{userName}</Txt>
           ) : (
+            // 비로그인 상태: 로그인 버튼 표시
             <TouchableOpacity
               onPress={() => navigation.navigate("Login")}
               style={styles.loginButton}
